@@ -27,10 +27,10 @@ $ npx @kamataryo/inat-convex "セトウチマイマイ" | npx @geolonia/view-geo
 |||
 |---|---|
 |<span class="italic" style="font-style:italic">Euhadra quaesita</span> (ヒダリマキマイマイ)|<span class="italic" style="font-style:italic">Euhadra subnimbosa</span> (セトウチマイマイ)|
-|![](./images/ヒダリマキマイマイ.png)|![](./images/セトウチマイマイ.png)|
+|![](https://kamataryo.github.io/inat-convex/ヒダリマキマイマイ.png)|![](https://kamataryo.github.io/inat-convex/セトウチマイマイ.png)|
 |`$ npx @kamataryo/inat-convex "ヒダリマキマイマイ" \| npx @geolonia/view-geojson` | `$ npx @kamataryo/inat-convex "セトウチマイマイ" \| npx @geolonia/view-geojson`|
 |Arctic Char (ホッキョクイワナ)|Char (イワナ)|
-|![](./images/arctic%20char.png)|![](./images/salvelinus%20leucomaenis.png)|
+|![](https://kamataryo.github.io/inat-convex/arctic%20char.png)|![](https://kamataryo.github.io/inat-convex/salvelinus%20leucomaenis.png)|
 |`$ npx @kamataryo/inat-convex "Arctic Char" \| npx @geolonia/view-geojson`|`$ npx @kamataryo/inat-convex "salvelinus leucomaenis" \| npx @geolonia/view-geojson`|
 
 ### Note
