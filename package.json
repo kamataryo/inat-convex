@@ -4,7 +4,7 @@
   },
   "name": "@kamataryo/inat-convex",
   "description": "A CLI tool to generate GeoJSON polygons that enclose the convex hull of species distribution areas.",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "bin": "index.mjs",
   "author": "kamataryo <kamataryo@users.noreply.github.com>",
   "license": "MIT",
