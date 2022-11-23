@@ -24,7 +24,7 @@ $ npx @kamataryo/inat-convex "セトウチマイマイ" | npx @geolonia/view-geo
 |![](./images/ヒダリマキマイマイ.png)|![](./images/セトウチマイマイ.png)|
 |`$ npx @kamataryo/inat-convex "ヒダリマキマイマイ" \| npx @geolonia/view-geojson` | `$ npx @kamataryo/inat-convex "セトウチマイマイ" \| npx @geolonia/view-geojson`|
 |Arctic Char (ホッキョクイワナ)|Char (イワナ)|
-|![](./images/arctic%20char.png)|![](./images/Salvelinus%20leucomaenis.png)|
+|![](./images/arctic%20char.png)|![](./images/salvelinus%20leucomaenis.png)|
 |`$ npx @kamataryo/inat-convex "Arctic Char" \| npx @geolonia/view-geojson`|`$ npx @kamataryo/inat-convex "salvelinus leucomaenis" \| npx @geolonia/view-geojson`|
 
 ## Acknowledgments
