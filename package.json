@@ -1,6 +1,7 @@
 {
   "dependencies": {
-    "@turf/turf": "^6.5.0"
+    "@turf/turf": "^6.5.0",
+    "node-fetch": "^3.3.0"
   },
   "name": "@kamataryo/inat-convex",
   "description": "A CLI tool to generate GeoJSON polygons that enclose the convex hull of species distribution areas.",
@@ -9,7 +10,7 @@
   "author": "kamataryo <kamataryo@users.noreply.github.com>",
   "license": "MIT",
   "engines": {
-    "node": ">=18"
+    "node": ">=16"
   },
   "devDependencies": {
     "@geolonia/view-geojson": "^0.0.6"
