@@ -4,7 +4,7 @@ A CLI tool to generate GeoJSON polygons that enclose the convex hull of species 
 
 ## Requirements
 
-- Node.js
+- Node.js or Deno
 
 ## Usage example
 
@@ -22,7 +22,15 @@ It is convenient to pipe to any tool which supports standard input e.g. [@geolon
 $ npx @kamataryo/inat-convex "セトウチマイマイ" | npx @geolonia/view-geojson
 ```
 
-### samples
+### (Option) with Deno
+
+```shell
+$ git clone git@github.com:kamataryo/inat-convex.git
+$ cd inat-convex
+$ deno run ./src/shims/deno.ts
+```
+
+### more samples
 
 |||
 |---|---|

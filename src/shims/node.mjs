@@ -9,6 +9,7 @@ const taxa = process.argv[2]
 main(taxa, {
   fetch,
   turf,
-  stdoutCallback: (result) => process.stdout.write(result),
+  stdoutCallback: (text) => process.stdout.write(text),
+  stderrCallback: (text) => process.stderr.write(text),
 })
 
