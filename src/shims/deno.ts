@@ -1,5 +1,5 @@
 
-import convex from 'npm:@turf/convex';
+import convex from "https://cdn.skypack.dev/@turf/convex"
 import { main } from '../index.mjs'
 
 const taxa = Deno.args[0]
