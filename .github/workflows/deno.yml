@@ -31,5 +31,5 @@ jobs:
           files: |
             out/aarch64-apple-darwin/inat-convex
             out/x86_64-apple-darwin/inat-convex
-            out/x86_64-pc-windows-msvc/inat-convex
+            out/x86_64-pc-windows-msvc/inat-convex.exe
             out/x86_64-unknown-linux-gnu/inat-convex
