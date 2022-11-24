@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "@turf/turf": "^6.5.0",
+    "@turf/convex": "^6.5.0",
     "node-fetch": "^3.3.0"
   },
   "name": "@kamataryo/inat-convex",

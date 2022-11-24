@@ -1,6 +1,9 @@
 const base = 'https://www.inaturalist.org/'
 
 export const main = async (taxa, { fetch, turf, stdoutCallback, stderrCallback }) => {
+  if(!taxa) {
+    throw new Error(`Invalid taxa: ${taxa}`)
+  }
 
   let currentPage = 1
   let isEnd = false
@@ -18,20 +21,22 @@ export const main = async (taxa, { fetch, turf, stdoutCallback, stderrCallback }
 
     const observations = await resp.json()
     features.push(
-      ...observations.map(observation => {
+      ...observations.reduce((prev, observation) => {
         const lng = parseFloat(observation.longitude)
         const lat = parseFloat(observation.latitude)
         if(
-          Number.isNaN(lat) ||
-          Number.isNaN(lng) ||
-          observation.quality_grade !== 'research' ||
-          observation.captive
+          !Number.isNaN(lat) &&
+          !Number.isNaN(lng) &&
+          observation.quality_grade === 'research' &&
+          !observation.captive
         ) {
-          return false
-        } else {
-          return turf.point([lng, lat])
+          prev.push({
+            type: 'Feature',
+            geometry: { type: 'Point', coordinates: [lng, lat] }
+          })
         }
-      }),
+        return prev
+      }, []),
     )
 
     // Pagination: first 5 pages and it's 1000 observations should be enough.
@@ -46,15 +51,11 @@ export const main = async (taxa, { fetch, turf, stdoutCallback, stderrCallback }
 
   } while (!isEnd);
 
-  const validFeatures = features.filter(x => !!x)
 
-  const result = turf.featureCollection([
-    turf.concave(
-      {
-        type: 'FeatureCollection',
-        features: validFeatures,
-      },
-  )])
+  const result = {
+    type: 'FeatureCollection',
+    features: [turf.convex({ type: 'FeatureCollection', features })]
+  }
 
   if(result.features.some(feature => !feature)) {
     console.error(`Unknown taxa "${taxa}" or too few observations (n = ${validFeatures.length}) found.`)
@@ -62,11 +63,11 @@ export const main = async (taxa, { fetch, turf, stdoutCallback, stderrCallback }
 
   result.features[0].geometry.coordinates[0].reverse()
   result.features[0].properties = {
-    totalObservation: total,
-    scannedObservation: validFeatures.length,
+    totalObservations: total,
+    scannedObservations: features.length,
     urls,
     title: taxa,
-    description: `Scanned: ${validFeatures.length}/${total} Observation${validFeatures.length.length === 1 ? '' : 's'}`
   }
+
   stdoutCallback(JSON.stringify(result) + '\n')
 }
