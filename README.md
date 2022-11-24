@@ -4,7 +4,7 @@ A CLI tool to generate GeoJSON polygons that enclose the convex hull of species 
 
 ## Requirements
 
-- Node.js@18 with experimental fetch API
+- Node.js
 
 ## Usage example
 
@@ -16,7 +16,7 @@ $ npx @kamataryo/inat-convex "Arctic Char"            # with an English common n
 $ npx @kamataryo/inat-convex "Salvelinus leucomaenis" # with a scientific name
 ```
 
-It is convenient to pipe to any tool which supports standard input.
+It is convenient to pipe to any tool which supports standard input e.g. [@geolonia/view-geojson](https://github.com/geolonia/view-geojson).
 
 ```shell
 $ npx @kamataryo/inat-convex "セトウチマイマイ" | npx @geolonia/view-geojson
@@ -37,7 +37,7 @@ $ npx @kamataryo/inat-convex "セトウチマイマイ" | npx @geolonia/view-geo
 
 ### Quality of data
 
-The output distribution area is just a convex of sampled observation points and not does not reflect detailed.
+The output distribution area is just a convex of sampled observation points and does not reflect detailed.
 
 ### Resources
 

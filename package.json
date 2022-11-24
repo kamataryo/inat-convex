@@ -6,7 +6,7 @@
   "name": "@kamataryo/inat-convex",
   "description": "A CLI tool to generate GeoJSON polygons that enclose the convex hull of species distribution areas.",
   "version": "1.0.4",
-  "bin": "index.mjs",
+  "bin": "src/shims/node.mjs",
   "author": "kamataryo <kamataryo@users.noreply.github.com>",
   "license": "MIT",
   "engines": {
@@ -14,5 +14,9 @@
   },
   "devDependencies": {
     "@geolonia/view-geojson": "^0.0.6"
+  },
+  "scripts": {
+    "deno:allow": "echo --allow-env=POLYGON_CLIPPING_MAX_QUEUE_SIZE,POLYGON_CLIPPING_MAX_SWEEPLINE_SEGMENTS --allow-net=www.inaturalist.org",
+    "start": "deno run $(npm run --silent deno:allow) ./src/shims/deno.ts"
   }
 }

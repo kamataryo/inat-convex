@@ -1,12 +1,6 @@
-#! /usr/bin/env node
-
-import fetch from 'node-fetch'
-import * as turf from '@turf/turf'
-
 const base = 'https://www.inaturalist.org/'
-const taxa = process.argv[2] // common name, taxon name, or scientific name
 
-const main = async () => {
+export const main = async (taxa, { fetch, turf, stdoutCallback }) => {
 
   let currentPage = 1
   let isEnd = false
@@ -52,7 +46,7 @@ const main = async () => {
   const validFeatures = features.filter(x => !!x)
 
   const result = turf.featureCollection([
-    turf.convex(
+    turf.concave(
       {
         type: 'FeatureCollection',
         features: validFeatures,
@@ -71,6 +65,5 @@ const main = async () => {
     title: taxa,
     description: `Scanned: ${validFeatures.length}/${total} Observation${validFeatures.length.length === 1 ? '' : 's'}`
   }
-  process.stdout.write(JSON.stringify(result) + '\n')
+  stdoutCallback(JSON.stringify(result) + '\n')
 }
-main()
