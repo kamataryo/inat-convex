@@ -26,5 +26,7 @@ jobs:
         if: startsWith(github.ref, 'refs/tags/')
         with:
           files: |
-            out/x86_64-pc-windows-msvc/inat-convex.exe
-            out/x86_64-unknown-linux-gnu/inat-convex
+            out/aarch64-apple-darwin.zip
+            out/x86_64-apple-darwin.zip
+            out/x86_64-pc-windows-msvc.zip
+            out/x86_64-unknown-linux-gnu.zip
