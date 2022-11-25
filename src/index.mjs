@@ -1,8 +1,9 @@
 const base = 'https://www.inaturalist.org/'
 
-export const main = async (taxa, { fetch, turf, stdoutCallback, stderrCallback }) => {
+export const main = async (taxa, { fetch, turf, stdoutCallback, stderrCallback, exit }) => {
   if(!taxa) {
-    throw new Error(`Invalid taxa: ${taxa}`)
+    stderrCallback(`[Error] Invalid taxa: ${taxa}`)
+    exit(1)
   }
 
   let currentPage = 1
@@ -46,28 +47,32 @@ export const main = async (taxa, { fetch, turf, stdoutCallback, stderrCallback }
     maxPage = Math.ceil(total / perPage)
     isEnd = currentPage === maxPage || currentPage === 5
     currentPage++
+    if(total < 3) {
+      break
+    }
 
     await new Promise(resolve => setTimeout(resolve, 1000))
 
   } while (!isEnd);
 
-
+  const convexFeature = turf.convex({ type: 'FeatureCollection', features })
   const result = {
     type: 'FeatureCollection',
-    features: [turf.convex({ type: 'FeatureCollection', features })]
+    features: [convexFeature]
   }
 
-  if(result.features.some(feature => !feature)) {
-    console.error(`Unknown taxa "${taxa}" or too few observations (n = ${validFeatures.length}) found.`)
+  if(!convexFeature || features.length < 3) {
+    stderrCallback(`[Error] Unknown taxa "${taxa}" or too few observations (n = ${features.length}) found.`)
+    exit(2)
+  } else {
+    result.features[0].geometry.coordinates[0].reverse()
+    result.features[0].properties = {
+      totalObservations: total,
+      scannedObservations: features.length,
+      urls,
+      title: taxa,
+    }
+    stdoutCallback(JSON.stringify(result) + '\n')
+    exit(0)
   }
-
-  result.features[0].geometry.coordinates[0].reverse()
-  result.features[0].properties = {
-    totalObservations: total,
-    scannedObservations: features.length,
-    urls,
-    title: taxa,
-  }
-
-  stdoutCallback(JSON.stringify(result) + '\n')
 }

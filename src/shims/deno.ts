@@ -10,4 +10,5 @@ main(taxa, {
   turf: { convex },
   stdoutCallback: (text: string) => Deno.stdout.write(encoder.encode(text)),
   stderrCallback: (text: string) => Deno.stderr.write(encoder.encode(text)),
+  exit: Deno.exit
 })

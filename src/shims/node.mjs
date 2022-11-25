@@ -11,5 +11,6 @@ main(taxa, {
   turf: { convex },
   stdoutCallback: (text) => process.stdout.write(text),
   stderrCallback: (text) => process.stderr.write(text),
+  exit: process.exit,
 })
 
